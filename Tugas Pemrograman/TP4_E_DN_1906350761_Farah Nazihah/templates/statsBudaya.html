@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>BudayaKB Lite</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+     {% include 'includes/_navbar.html' %}
+     <!-- Load icon library -->
+
+    <!-- The form -->
+    <form action="statsBudaya" method='POST'>
+        <br>
+        <p>Pilih kategori pencarian</p>
+            <div class="dropdown">
+                <select class="btn btn-secondary dropdown-toggle" name="category">
+                    <option class="dropdown-menu">Kategori</option>
+                    <option class="dropdown-item" value="nama">Semua Budaya</option>
+                    <option class="dropdown-item" value="tipe">Tipe Budaya</option>
+                    <option class="dropdown-item" value="prov">Asal Provinsi Budaya</option>
+                </select>
+                <input type="submit" value="Tampilkan">
+            </div>
+    </form>
+
+
+    {% if cat is defined and cat =="tipe"  %}
+    <table class="table" width="325">
+        <thead class="thead-dark">
+            <tr>
+                <td scope="col">Tipe Budaya</td>
+                <td scope="col">Jumlah Budaya</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in result %}
+            <tr>
+                <td> {{i}} </td>
+                <td> {{result[i]}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    {% elif cat is defined and cat =="nama"  %}
+        <p>Terdapat {{counter}} budaya dalam sistem</p>
+
+    {% elif cat is defined and cat =="prov"  %}
+        <table class="table" width="325">
+            <thead class="thead-dark">
+                <tr>
+                    <td scope="col">Provinsi</td>
+                    <td scope="col">Jumlah Budaya</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in result %}
+                <tr>
+                    <td> {{i}} </td>
+                    <td> {{result[i]}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    {% endif %}
+
+    </table>
+</body>
+</html>

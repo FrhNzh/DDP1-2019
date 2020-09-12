@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BudayaKB Lite</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include 'includes/_navbar.html' %}
+        <section class="container-fluid pb-2 px-3">
+            {% block content %}
+            <div class="row">
+                <div class="container col mr-5 px-5">
+                    <p><h3>Ubah Budaya</h3></p>
+                    <p><h6>Masukkan data budaya yang akan diubah</h6></p>
+                    <form action="ubahBudaya" method='POST'>
+                        <table>
+                            <tr>
+                                <td style="width:170px;"><b>Nama Budaya</b></td>
+                                <td> : <input type="text" placeholder="Tari Saman" name="nama" required></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td><b>Tipe Budaya</b></td>
+                                <td> : <input type="text" placeholder="Tarian" name="tipe" required></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td><b>Asal Provinsi</b></td>
+                                <td> : <input type="text" placeholder="Aceh" name="prov" required></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td><b>Url Referensi</b></td>
+                                <td> : <input type="text" placeholder="http://dbpedia.org/resource/Saman_(dance)" name="ref" required></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td></td>
+                                <td align="right"><input type="submit" value="Ubah Data"></td>
+                            </tr>
+                        </table>
+                    </form>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div mr-3>
+                {% if result is defined and result == False %}
+                    <p><h5>{{nama_budaya}} gagal diubah</h5></p>
+                    <p><h6>Budaya {{nama_budaya}} tidak ada di dalam sistem</h6></p>
+                {% elif result is defined and result == True %}
+                    <p><h5>Budaya {{nama_budaya}} berhasil diubah</h5></p>
+                {% endif %}
+            </div>
+            {% endblock %}
+        </section>
+    </body>
+</html>

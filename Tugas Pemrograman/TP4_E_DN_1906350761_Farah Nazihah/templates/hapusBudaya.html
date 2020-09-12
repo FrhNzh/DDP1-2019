@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BudayaKB Lite</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include 'includes/_navbar.html' %}
+        <section class="container-fluid pb-5 px-3">
+            {% block content %}
+            <div class="row">
+                <div class="container" mr-5>
+                    <div class="col">
+                            <p><h3>Hapus Budaya</h3></p>
+                            <div class="dropdown">
+                                <p><h6>Masukan nama budaya yang akan dihapus</h6></p>
+                                <form action="hapusBudaya" method='POST'>
+                                    <input type="text" placeholder="Nama Budaya" name="nama" required>
+                                    <input type="submit" value="Hapus Data">
+                                </form>
+                            </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="col">a</div>
+                <div class="col">a</div>
+            </div>
+            <div mr-3>
+                {% if result is defined and result == False %}
+                    <p><h5>Budaya gagal dihapus</h5></p>
+                {% elif result is defined and result == True %}
+                    <p><h5>Budaya berhasil dihapus</h5></p>
+                {% endif %}
+            </div>
+            {% endblock %}
+        </section>
+    </body>
+</html>
